@@ -1,28 +1,13 @@
 import React from "react";
 import Head from "next/head";
-import styles from "./layout.module.css";
-import Link from "next/link";
 import PullToRefresh from "react-simple-pull-to-refresh";
 
 import Header from "./header";
 
-const name = "[Your Name]";
-export const siteTitle = "Next.js Sample Website";
+export const siteTitle = "Fampay Contextual Cards";
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, onRefresh }) {
   const [refreshing, setRefreshing] = React.useState(false);
-  const onRefresh = React.useCallback(() => {
-    console.log("onRefresh");
-    setRefreshing(true);
-    // setTimeout(() => {
-    //   setRefreshing(false);
-    // }, 1000);
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve("foo");
-      }, 1000);
-    });
-  }, []);
 
   return (
     <PullToRefresh onRefresh={onRefresh} pullingContent="">
@@ -45,7 +30,7 @@ export default function Layout({ children, home }) {
 
         <Header />
 
-        <main className="bg-background-primary-light min-h-screen p-4 flex justify-center rounded-2xl">
+        <main className="bg-background-primary-light min-h-screen p-4 flex md:justify-center rounded-2xl">
           {children}
         </main>
       </div>
